@@ -1,27 +1,38 @@
 package main
 
+import "fmt"
 
-type expression struct{
-	var x string
-	left *expression
-	right *expression
+type TreeNode struct{
+	x string
+	left *TreeNode
+	right *TreeNode
 }
-
-func check(c string) bool{
-	if c == "+" || c == "-" || c == "*" || c == "/" {
-		return true
+func PostorderTraversal(tree *TreeNode) {
+	if tree == nil{
+		return
+	} else{
+		PreorderTraversal(tree.left)
+		PreorderTraversal(tree.right)
+		fmt.Println(tree.x)
 	}
-	return false
 }
-
-
-func tree(str string) expression{
-	var str2 string
-
-
+func PreorderTraversal(tree *TreeNode) {
+	if tree == nil{
+		return
+	} else{
+		fmt.Println(tree.x)
+		PreorderTraversal(tree.left)
+		PreorderTraversal(tree.right)
+	}
 }
 func main(){
-	var str string = "a+b-c"
-	var str1 expression = tree(str)
-
+	tree := &TreeNode{"+",nil,nil}
+	tree.left = &TreeNode{"a",nil, nil}
+	tree.right = &TreeNode{"-",nil,nil}
+	tree.right.left = &TreeNode{"b",nil, nil}
+	tree.right.right = &TreeNode{"c", nil, nil }
+	fmt.Println("PreorderTraversal :")
+	PreorderTraversal(tree)
+	fmt.Println("PostorderTraversal :")
+	PostorderTraversal(tree)
 }
