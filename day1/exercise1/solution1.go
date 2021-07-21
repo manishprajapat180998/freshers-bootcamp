@@ -20,21 +20,19 @@ func (M1 Matrix) set_element(i int ,j int ,val int) {
 	M1.twod[i][j] = val
 }
 
-func add_Matrices(M1, M2 Matrix)  Matrix{
-	var M_temp = Matrix{}
+func (M1 Matrix)add_Matrices(M2 Matrix)  Matrix{
 	for i:=0;i<2;i++ {
 		for j:=0;j<2;j++{
-			M_temp.twod[i][j] = M1.twod[i][j]+M2.twod[i][j]
+			M1.twod[i][j] = M1.twod[i][j]+M2.twod[i][j]
 		}
 	}
-	return M_temp
+	return M1
 }
 
-func main(){
-	var M2 = Matrix{2,2,[2][2]int{{5,6},{7,8}}}
-	var M1 = Matrix{2,2,[2][2]int{{1,2},{3,4}}}
-	var M3 = Matrix{}
-	M3 = add_Matrices(M1,M2)
-	fmt.Println(M3.twod)
-	fmt.Println(M3)
+func main() {
+	var M2 = Matrix{2, 2, [2][2]int{{5, 6}, {7, 8}}}
+	var M1 = Matrix{2, 2, [2][2]int{{1, 2}, {3, 4}}}
+	M1 = M1.add_Matrices(M2)
+	fmt.Println(M1.twod)
+	fmt.Println(M1)
 }
